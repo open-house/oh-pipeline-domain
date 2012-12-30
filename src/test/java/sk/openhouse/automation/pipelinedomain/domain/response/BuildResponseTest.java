@@ -1,6 +1,7 @@
 package sk.openhouse.automation.pipelinedomain.domain.response;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.bind.JAXBException;
@@ -45,5 +46,26 @@ public class BuildResponseTest {
 
         Assert.assertEquals(unmarshalled.getBuildPhases().getBuildPhases().get(0).getName(), name);
         Assert.assertEquals(unmarshalled.getNumber(), number);
+    }
+
+    @Test
+    public void testCompareTo() {
+
+        BuildResponse buildResponse1 = new BuildResponse();
+        buildResponse1.setNumber(1);
+
+        BuildResponse buildResponse3 = new BuildResponse();
+        buildResponse3.setNumber(3);
+
+        BuildResponse buildResponse2 = new BuildResponse();
+        buildResponse2.setNumber(2);
+
+        List<BuildResponse> builds = new ArrayList<BuildResponse>();
+        builds.add(buildResponse1);
+        builds.add(buildResponse3);
+        builds.add(buildResponse2);
+
+        Collections.sort(builds);
+        Assert.assertEquals(builds.get(0).getNumber(), 3);
     }
 }

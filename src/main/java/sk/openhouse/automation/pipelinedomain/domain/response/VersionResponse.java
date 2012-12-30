@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "version")
 @XmlType(propOrder = {"versionNumber", "resources"})
-public class VersionResponse {
+public class VersionResponse implements Comparable<VersionResponse> {
 
     @XmlElement(name = "version-number")
     private String versionNumber;
@@ -41,6 +41,11 @@ public class VersionResponse {
      */
     public void setResources(ResourcesResponse resources) {
         this.resources = resources;
+    }
+
+    @Override
+    public int compareTo(VersionResponse o) {
+        return o.versionNumber.compareTo(versionNumber);
     }
 
     @Override

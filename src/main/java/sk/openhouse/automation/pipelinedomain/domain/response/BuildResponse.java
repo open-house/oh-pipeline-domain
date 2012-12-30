@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "build")
 @XmlType(propOrder = {"number", "buildPhases", "resources"})
-public class BuildResponse {
+public class BuildResponse implements Comparable<BuildResponse> {
 
     @XmlElement(name = "number")
     private int number;
@@ -52,6 +52,11 @@ public class BuildResponse {
      */
     public void setResources(ResourcesResponse resources) {
         this.resources = resources;
+    }
+
+    @Override
+    public int compareTo(BuildResponse o) {
+        return o.number - number;
     }
 
     @Override
