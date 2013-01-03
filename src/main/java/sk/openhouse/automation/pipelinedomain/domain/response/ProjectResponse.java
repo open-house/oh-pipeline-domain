@@ -19,7 +19,7 @@ public class ProjectResponse {
     private String name;
 
     @XmlElement(name = "resources")
-    private ResourcesResponse resources;
+    private LinksResponse resources;
 
     /**
      * @return unique product name
@@ -38,14 +38,14 @@ public class ProjectResponse {
     /**
      * @return list of resources for a project(s)
      */
-    public ResourcesResponse getResources() {
+    public LinksResponse getResources() {
         return resources;
     }
 
     /**
      * @param links list of resources for a project(s)
      */
-    public void setResources(ResourcesResponse resources) {
+    public void setResources(LinksResponse resources) {
         this.resources = resources;
     }
 

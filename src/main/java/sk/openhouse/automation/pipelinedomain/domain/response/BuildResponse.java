@@ -22,7 +22,7 @@ public class BuildResponse implements Comparable<BuildResponse> {
     private BuildPhasesResponse buildPhases = new BuildPhasesResponse();
 
     @XmlElement(name = "resources")
-    private ResourcesResponse resources;
+    private LinksResponse resources;
 
     public int getNumber() {
         return number;
@@ -43,14 +43,14 @@ public class BuildResponse implements Comparable<BuildResponse> {
     /**
      * @return list of resources for a project(s)
      */
-    public ResourcesResponse getResources() {
+    public LinksResponse getResources() {
         return resources;
     }
 
     /**
      * @param links list of resources for a project(s)
      */
-    public void setResources(ResourcesResponse resources) {
+    public void setResources(LinksResponse resources) {
         this.resources = resources;
     }
 

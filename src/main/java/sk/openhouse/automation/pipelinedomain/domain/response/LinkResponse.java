@@ -19,30 +19,33 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "link")
-@XmlType(propOrder = {"href", "method", "schemaLocation"})
+@XmlType(propOrder = {"href", "method", "description", "schemaLocation"})
 public class LinkResponse {
-
-    @XmlAttribute(name = "schemaLocation")
-    private URI schemaLocation;
-
-    @XmlAttribute(name = "method")
-    private String method;
 
     @XmlAttribute(name = "href")
     private URI href;
 
+    @XmlAttribute(name = "method")
+    private String method;
+
+    @XmlAttribute(name = "description")
+    private String description;
+
+    @XmlAttribute(name = "schemaLocation")
+    private URI schemaLocation;
+
     /**
-     * @return resource xml schema location
+     * @return uri of the resource
      */
-    public URI getSchemaLocation() {
-        return schemaLocation;
+    public URI getHref() {
+        return href;
     }
 
     /**
-     * @param schemaLocation resource xml schema location
+     * @param link uri of the resource
      */
-    public void setSchemaLocation(URI schemaLocation) {
-        this.schemaLocation = schemaLocation;
+    public void setHref(URI href) {
+        this.href = href;
     }
 
     /**
@@ -60,17 +63,31 @@ public class LinkResponse {
     }
 
     /**
-     * @return uri of the resource
+     * @return link description
      */
-    public URI getHref() {
-        return href;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * @param link uri of the resource
+     * @param description of the link
      */
-    public void setHref(URI href) {
-        this.href = href;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return resource xml schema location
+     */
+    public URI getSchemaLocation() {
+        return schemaLocation;
+    }
+
+    /**
+     * @param schemaLocation resource xml schema location
+     */
+    public void setSchemaLocation(URI schemaLocation) {
+        this.schemaLocation = schemaLocation;
     }
 
     @Override
@@ -100,9 +117,10 @@ public class LinkResponse {
     public String toString() {
 
         return new ToStringBuilder(this)
-                .append("schemaLocation", schemaLocation)
-                .append("method", method)
                 .append("href", href)
+                .append("method", method)
+                .append("description", description)
+                .append("schemaLocation", schemaLocation)
                 .toString();
     }
 }

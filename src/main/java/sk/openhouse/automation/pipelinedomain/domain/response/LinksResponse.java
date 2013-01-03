@@ -1,60 +1,61 @@
 package sk.openhouse.automation.pipelinedomain.domain.response;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+/**
+ * List of resources
+ * 
+ * @author pete
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "resource")
-@XmlType(propOrder = {"link", "description"})
-public class ResourceResponse {
+@XmlRootElement(name = "links")
+public class LinksResponse {
 
     @XmlElement(name = "link")
-    private LinkResponse link;
+    private List<LinkResponse> links = new ArrayList<LinkResponse>();
 
-    @XmlElement(name = "description")
-    private String description;
-
-    public LinkResponse getLink() {
-        return link;
+    /**
+     * @return list of resources
+     */
+    public List<LinkResponse> getLinks() {
+        return links;
     }
 
-    public void setLink(LinkResponse link) {
-        this.link = link;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    /**
+     * @param resources list of resources
+     */
+    public void setLinks(List<LinkResponse> links) {
+        this.links = links;
     }
 
     @Override
     public final int hashCode() {
 
         return new HashCodeBuilder()
-                .append(link)
+                .append(links)
                 .toHashCode();
     }
 
     @Override
     public final boolean equals(Object object) {
 
-        if (!(object instanceof ResourceResponse)) {
+        if (!(object instanceof LinksResponse)) {
             return false;
         }
 
-        final ResourceResponse other = (ResourceResponse) object;
+        final LinksResponse other = (LinksResponse) object;
         return new EqualsBuilder()
-                .append(link, other.link)
+                .append(links, other.links)
                 .isEquals();
     }
 
@@ -62,8 +63,7 @@ public class ResourceResponse {
     public String toString() {
 
         return new ToStringBuilder(this)
-                .append("link", link)
-                .append("description", description)
+                .append("links", links)
                 .toString();
     }
 }

@@ -19,7 +19,7 @@ public class VersionResponse implements Comparable<VersionResponse> {
     private String versionNumber;
 
     @XmlElement(name = "resources")
-    private ResourcesResponse resources;
+    private LinksResponse resources;
 
     public String getVersionNumber() {
         return versionNumber;
@@ -32,14 +32,14 @@ public class VersionResponse implements Comparable<VersionResponse> {
     /**
      * @return list of resources for a project(s)
      */
-    public ResourcesResponse getResources() {
+    public LinksResponse getResources() {
         return resources;
     }
 
     /**
      * @param links list of resources for a project(s)
      */
-    public void setResources(ResourcesResponse resources) {
+    public void setResources(LinksResponse resources) {
         this.resources = resources;
     }
 
