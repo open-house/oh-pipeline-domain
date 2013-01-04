@@ -12,14 +12,14 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "project")
-@XmlType(propOrder = {"name", "resources"})
+@XmlType(propOrder = {"name", "links"})
 public class ProjectResponse {
 
     @XmlElement(name = "name")
     private String name;
 
-    @XmlElement(name = "resources")
-    private LinksResponse resources;
+    @XmlElement(name = "links")
+    private LinksResponse links;
 
     /**
      * @return unique product name
@@ -36,17 +36,17 @@ public class ProjectResponse {
     }
 
     /**
-     * @return list of resources for a project(s)
+     * @return list of links for a project(s)
      */
-    public LinksResponse getResources() {
-        return resources;
+    public LinksResponse getLinks() {
+        return links;
     }
 
     /**
-     * @param links list of resources for a project(s)
+     * @param links list of links for a project(s)
      */
-    public void setResources(LinksResponse resources) {
-        this.resources = resources;
+    public void setLinks(LinksResponse links) {
+        this.links = links;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class ProjectResponse {
 
         return new ToStringBuilder(this)
                 .append("name", name)
-                .append("resources", resources)
+                .append("links", links)
                 .toString();
     }
 }
