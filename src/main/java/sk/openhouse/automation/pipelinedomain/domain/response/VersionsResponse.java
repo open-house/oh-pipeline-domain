@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -21,8 +22,59 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @XmlRootElement(name = "versions")
 public class VersionsResponse {
 
+    @XmlAttribute(name = "href")
+    private String href;
+
+    @XmlAttribute(name = "method")
+    private String method;
+
+    @XmlAttribute(name = "description")
+    private String description;
+
     @XmlElement(name = "version")
     private List<VersionResponse> versions = new ArrayList<VersionResponse>();
+
+    /**
+     * @return uri of a resource
+     */
+    public String getHref() {
+        return href;
+    }
+
+    /**
+     * @param link uri of a resource
+     */
+    public void setHref(String href) {
+        this.href = href;
+    }
+
+    /**
+     * @return http method to access the (href) link
+     */
+    public String getMethod() {
+        return method;
+    }
+
+    /**
+     * @param method http method to access the (href) link
+     */
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    /**
+     * @return link description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description of the link
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     /**
      * @return list of versions
@@ -63,6 +115,9 @@ public class VersionsResponse {
     public String toString() {
 
         return new ToStringBuilder(this)
+                .append("href", href)
+                .append("method", method)
+                .append("description", description)
                 .append("versions", versions)
                 .toString();
     }

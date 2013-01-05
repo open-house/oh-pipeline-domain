@@ -12,14 +12,14 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "version")
-@XmlType(propOrder = {"versionNumber", "resources"})
+@XmlType(propOrder = {"versionNumber", "links"})
 public class VersionResponse implements Comparable<VersionResponse> {
 
     @XmlElement(name = "version-number")
     private String versionNumber;
 
-    @XmlElement(name = "resources")
-    private LinksResponse resources;
+    @XmlElement(name = "links")
+    private LinksResponse links;
 
     public String getVersionNumber() {
         return versionNumber;
@@ -32,15 +32,15 @@ public class VersionResponse implements Comparable<VersionResponse> {
     /**
      * @return list of resources for a project(s)
      */
-    public LinksResponse getResources() {
-        return resources;
+    public LinksResponse getLinks() {
+        return links;
     }
 
     /**
      * @param links list of resources for a project(s)
      */
-    public void setResources(LinksResponse resources) {
-        this.resources = resources;
+    public void setLinks(LinksResponse links) {
+        this.links = links;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class VersionResponse implements Comparable<VersionResponse> {
 
         return new ToStringBuilder(this)
                 .append("number", versionNumber)
-                .append("resources", resources)
+                .append("links", links)
                 .toString();
     }
 }
