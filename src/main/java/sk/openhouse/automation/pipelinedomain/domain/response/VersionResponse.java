@@ -30,14 +30,14 @@ public class VersionResponse implements Comparable<VersionResponse> {
     }
 
     /**
-     * @return list of resources for a project(s)
+     * @return list of resources
      */
     public LinksResponse getLinks() {
         return links;
     }
 
     /**
-     * @param links list of resources for a project(s)
+     * @param links list of resources
      */
     public void setLinks(LinksResponse links) {
         this.links = links;

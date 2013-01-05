@@ -19,7 +19,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "phase")
-@XmlType(propOrder = {"name", "uri"})
+@XmlType(propOrder = {"name", "uri", "links"})
 public class PhaseResponse {
 
     @XmlElement(name = "name")
@@ -27,6 +27,9 @@ public class PhaseResponse {
 
     @XmlElement(name = "uri")
     private URI uri;
+
+    @XmlElement(name = "links")
+    private LinksResponse links;
 
     public String getName() {
         return name;
@@ -42,6 +45,20 @@ public class PhaseResponse {
 
     public void setUri(URI uri) {
         this.uri = uri;
+    }
+
+    /**
+     * @return list of resources
+     */
+    public LinksResponse getLinks() {
+        return links;
+    }
+
+    /**
+     * @param links list of resources
+     */
+    public void setLinks(LinksResponse links) {
+        this.links = links;
     }
 
     @Override
@@ -71,6 +88,7 @@ public class PhaseResponse {
         return new ToStringBuilder(this)
                 .append("name", name)
                 .append("uri", uri)
+                .append("links", links)
                 .toString();
     }
 }
