@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "build")
-@XmlType(propOrder = {"number", "buildPhases", "resources"})
+@XmlType(propOrder = {"number", "buildPhases", "links"})
 public class BuildResponse implements Comparable<BuildResponse> {
 
     @XmlElement(name = "number")
@@ -21,8 +21,8 @@ public class BuildResponse implements Comparable<BuildResponse> {
     @XmlElement(name = "build-phases")
     private BuildPhasesResponse buildPhases = new BuildPhasesResponse();
 
-    @XmlElement(name = "resources")
-    private LinksResponse resources;
+    @XmlElement(name = "links")
+    private LinksResponse links;
 
     public int getNumber() {
         return number;
@@ -41,17 +41,17 @@ public class BuildResponse implements Comparable<BuildResponse> {
     }
 
     /**
-     * @return list of resources for a project(s)
+     * @return list of resources
      */
-    public LinksResponse getResources() {
-        return resources;
+    public LinksResponse getLinks() {
+        return links;
     }
 
     /**
-     * @param links list of resources for a project(s)
+     * @param links list of resources
      */
-    public void setResources(LinksResponse resources) {
-        this.resources = resources;
+    public void setLinks(LinksResponse links) {
+        this.links = links;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class BuildResponse implements Comparable<BuildResponse> {
         return new ToStringBuilder(this)
                 .append("number", number)
                 .append("buildPhases", buildPhases)
-                .append("resources", resources)
+                .append("links", links)
                 .toString();
     }
 }
