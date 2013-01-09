@@ -1,7 +1,0 @@
-before_install:
- - sudo sh -c "echo 'deb http://repos.openhouse.sk/debian squeeze main' > /etc/apt/sources.list.d/oh_repo.list"
- - wget -O - http://repos.openhouse.sk/oh_repo.gpg.key | sudo apt-key add -
- - sudo apt-get update -qq
- - sudo apt-get install -qq maven2 openjdk-6-jdk oh-deb-build
-script: "bash build $TRAVIS_BUILD_NUMBER"
-after_script: "PKG=`echo *.deb`;curl -u anonymous:$USER -T $PKG ftp://prod.openhouse.sk/deb/"
