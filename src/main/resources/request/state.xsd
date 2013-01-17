@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+        elementFormDefault="qualified">
+
+    <xs:element name="state">
+        <xs:annotation>
+            <xs:documentation>Phase state</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name">
+                    <xs:annotation>
+                        <xs:documentation>Name of the state</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="IN_PROGRESS">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Phase will be re-run. This state can be set only on existing build 
+                                        phase in FAIL state.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                            <xs:enumeration value="SUCCESS">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Next phase will be triggered/run (if this is not the last one)
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                            <xs:enumeration value="FAIL">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Build fails current phase and does not move further in the pipeline
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+        elementFormDefault="qualified">
+
+    <xs:element name="version">
+        <xs:annotation>
+            <xs:documentation>Version</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="version-number">
+                    <xs:annotation>
+                        <xs:documentation>Version number</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="45"/>
+                            <xs:whiteSpace value="collapse"/>
+                            <xs:pattern value="[0-9\.]{1,45}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
