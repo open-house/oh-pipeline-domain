@@ -35,15 +35,25 @@ public class PhasesResponseTest {
         phaseResponse.setName(name);
         phaseResponse.setUri(uri);
 
+        String description = "test";
+        String href = "http://localhost:3000";
+        String method = "GET";
+
         List<PhaseResponse> phases = new ArrayList<PhaseResponse>();
         phases.add(phaseResponse);
         PhasesResponse phasesResponse = new PhasesResponse();
         phasesResponse.setPhases(phases);
+        phasesResponse.setDescription(description);
+        phasesResponse.setHref(href);
+        phasesResponse.setMethod(method);
 
         String marshalled = TestUtil.marshall(PhasesResponse.class, phasesResponse);
         PhasesResponse unmarshalled = (PhasesResponse) TestUtil.unmarshall(PhasesResponse.class, marshalled);
 
         Assert.assertEquals(unmarshalled.getPhases().get(0).getName(), name);
         Assert.assertEquals(unmarshalled.getPhases().get(0).getUri(), uri);
+        Assert.assertEquals(unmarshalled.getDescription(), description);
+        Assert.assertEquals(unmarshalled.getHref(), href);
+        Assert.assertEquals(unmarshalled.getMethod(), method);
     }
 }

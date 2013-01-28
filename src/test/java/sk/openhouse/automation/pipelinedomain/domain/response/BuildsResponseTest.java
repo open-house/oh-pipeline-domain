@@ -31,13 +31,23 @@ public class BuildsResponseTest {
         BuildResponse buildResponse = new BuildResponse();
         buildResponse.setNumber(number);
 
+        String description = "test";
+        String href = "http://localhost:3000";
+        String method = "GET";
+
         List<BuildResponse> builds = new ArrayList<BuildResponse>();
         builds.add(buildResponse);
         buildsResponse.setBuilds(builds);
+        buildsResponse.setDescription(description);
+        buildsResponse.setHref(href);
+        buildsResponse.setMethod(method);
 
         String marshalled = TestUtil.marshall(BuildsResponse.class, buildsResponse);
         BuildsResponse unmarshalled = (BuildsResponse) TestUtil.unmarshall(BuildsResponse.class, marshalled);
 
         Assert.assertEquals(unmarshalled.getBuilds().get(0).getNumber(), number);
+        Assert.assertEquals(unmarshalled.getDescription(), description);
+        Assert.assertEquals(unmarshalled.getHref(), href);
+        Assert.assertEquals(unmarshalled.getMethod(), method);
     }
 }

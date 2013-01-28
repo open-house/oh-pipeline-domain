@@ -32,10 +32,18 @@ public class VersionResponseTest {
         VersionResponse versionResponse = new VersionResponse();
         versionResponse.setVersionNumber(versionNumber);
 
+        LinkResponse linkResponse = new LinkResponse();
+        List<LinkResponse> links = new ArrayList<LinkResponse>();
+        links.add(linkResponse);
+        LinksResponse linksResponse = new LinksResponse();
+        linksResponse.setLinks(links);
+        versionResponse.setLinks(linksResponse);
+
         String marshalled = TestUtil.marshall(VersionResponse.class, versionResponse);
         VersionResponse unmarshalled = (VersionResponse) TestUtil.unmarshall(VersionResponse.class, marshalled);
 
         Assert.assertEquals(unmarshalled.getVersionNumber(), versionNumber);
+        Assert.assertEquals(unmarshalled.getLinks().getLinks().size(), 1);
     }
 
     @Test

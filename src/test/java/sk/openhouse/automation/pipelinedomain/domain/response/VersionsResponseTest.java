@@ -34,12 +34,22 @@ public class VersionsResponseTest {
         List<VersionResponse> versions = new ArrayList<VersionResponse>();
         versions.add(versionResponse);
 
+        String description = "test";
+        String href = "http://localhost:3000";
+        String method = "GET";
+
         VersionsResponse versionsResponse = new VersionsResponse();
         versionsResponse.setVersions(versions);
+        versionsResponse.setDescription(description);
+        versionsResponse.setHref(href);
+        versionsResponse.setMethod(method);
 
         String marshalled = TestUtil.marshall(VersionsResponse.class, versionsResponse);
         VersionsResponse unmarshalled = (VersionsResponse) TestUtil.unmarshall(VersionsResponse.class, marshalled);
 
         Assert.assertEquals(unmarshalled.getVersions().get(0).getVersionNumber(), versionNumber);
+        Assert.assertEquals(unmarshalled.getDescription(), description);
+        Assert.assertEquals(unmarshalled.getHref(), href);
+        Assert.assertEquals(unmarshalled.getMethod(), method);
     }
 }

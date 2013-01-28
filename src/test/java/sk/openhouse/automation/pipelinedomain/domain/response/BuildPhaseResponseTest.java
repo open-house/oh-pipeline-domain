@@ -1,5 +1,7 @@
 package sk.openhouse.automation.pipelinedomain.domain.response;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +28,7 @@ public class BuildPhaseResponseTest {
     }
 
     @Test
-    public void testMarshall() throws JAXBException {
+    public void testMarshall() throws JAXBException, URISyntaxException {
 
         String name = "test_phase";
         Date stateDate = new Date();
@@ -46,11 +48,29 @@ public class BuildPhaseResponseTest {
         buildPhaseResponse.setName(name);
         buildPhaseResponse.setStates(statesResponse);
 
+        LinkResponse linkResponse = new LinkResponse();
+        linkResponse.setDescription("test link");
+        linkResponse.setHref(new URI("http://localhost:4000"));
+        linkResponse.setMethod("GET");
+        linkResponse.setSchemaLocation(new URI("http://localhost:8000/schema"));
+
+        List<LinkResponse> links = new ArrayList<LinkResponse>();
+        links.add(linkResponse);
+        LinksResponse linksResponse = new LinksResponse();
+        linksResponse.setLinks(links);
+        buildPhaseResponse.setLinks(linksResponse);
+
         String marshalled = TestUtil.marshall(BuildPhaseResponse.class, buildPhaseResponse);
         BuildPhaseResponse unmarshalled = (BuildPhaseResponse) TestUtil.unmarshall(BuildPhaseResponse.class, marshalled);
 
         Assert.assertEquals(unmarshalled.getName(), name);
         Assert.assertEquals(unmarshalled.getStates().getStates().get(0).getName(), stateName);
         Assert.assertEquals(unmarshalled.getStates().getStates().get(0).getDate(), stateDate);
+
+        LinkResponse link = unmarshalled.getLinks().getLinks().get(0);
+        Assert.assertEquals(link.getDescription(), "test link");
+        Assert.assertEquals(link.getMethod(), "GET");
+        Assert.assertEquals(link.getHref(), new URI("http://localhost:4000"));
+        Assert.assertEquals(link.getSchemaLocation(), new URI("http://localhost:8000/schema"));
     }
 }

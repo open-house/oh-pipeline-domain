@@ -2,6 +2,8 @@ package sk.openhouse.automation.pipelinedomain.domain.response;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
@@ -33,10 +35,18 @@ public class PhaseResponseTest {
         phaseResponse.setName(name);
         phaseResponse.setUri(uri);
 
+        LinkResponse linkResponse = new LinkResponse();
+        List<LinkResponse> links = new ArrayList<LinkResponse>();
+        links.add(linkResponse);
+        LinksResponse linksResponse = new LinksResponse();
+        linksResponse.setLinks(links);
+        phaseResponse.setLinks(linksResponse);
+
         String marshalled = TestUtil.marshall(PhaseResponse.class, phaseResponse);
         PhaseResponse unmarshalled = (PhaseResponse) TestUtil.unmarshall(PhaseResponse.class, marshalled);
 
         Assert.assertEquals(unmarshalled.getName(), name);
         Assert.assertEquals(unmarshalled.getUri(), uri);
+        Assert.assertEquals(unmarshalled.getLinks().getLinks().size(), 1);
     }
 }

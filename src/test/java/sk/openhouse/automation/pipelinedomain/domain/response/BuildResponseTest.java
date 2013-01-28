@@ -41,11 +41,19 @@ public class BuildResponseTest {
         buildPhasesResponse.setBuildPhases(buildPhases);
         buildResponse.setBuildPhases(buildPhasesResponse);
 
+        LinkResponse linkResponse = new LinkResponse();
+        List<LinkResponse> links = new ArrayList<LinkResponse>();
+        links.add(linkResponse);
+        LinksResponse linksResponse = new LinksResponse();
+        linksResponse.setLinks(links);
+        buildResponse.setLinks(linksResponse);
+
         String marshalled = TestUtil.marshall(BuildResponse.class, buildResponse);
         BuildResponse unmarshalled = (BuildResponse) TestUtil.unmarshall(BuildResponse.class, marshalled);
 
         Assert.assertEquals(unmarshalled.getBuildPhases().getBuildPhases().get(0).getName(), name);
         Assert.assertEquals(unmarshalled.getNumber(), number);
+        Assert.assertEquals(unmarshalled.getLinks().getLinks().size(), 1);
     }
 
     @Test
