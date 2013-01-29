@@ -21,7 +21,7 @@
                             <xs:minLength value="1"/>
                             <xs:maxLength value="45"/>
                             <xs:whiteSpace value="collapse"/>
-                            <xs:pattern value="[a-zA-Z0-9-_]{1,45}"/>
+                            <xs:pattern value="[a-zA-Z0-9\-_]{1,45}"/>
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
@@ -35,6 +35,36 @@
                     </xs:annotation>
                     <xs:simpleType>
                         <xs:restriction base="xs:anyURI">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="45"/>
+                            <xs:whiteSpace value="collapse"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="username" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Authentication, use when the request to the URL has to be authenticated.
+                            Only HTTP Basic authentication is currently supported.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="45"/>
+                            <xs:whiteSpace value="collapse"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="password" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Authentication, use when the request to the URL has to be authenticated.
+                            Only HTTP Basic authentication is currently supported.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
                             <xs:minLength value="1"/>
                             <xs:maxLength value="45"/>
                             <xs:whiteSpace value="collapse"/>

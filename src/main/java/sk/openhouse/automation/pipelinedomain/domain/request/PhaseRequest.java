@@ -14,7 +14,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "phase")
-@XmlType(propOrder = {"name", "uri"})
+@XmlType(propOrder = {"name", "uri", "username", "password"})
 public class PhaseRequest {
 
     @XmlElement(name = "name")
@@ -22,6 +22,12 @@ public class PhaseRequest {
 
     @XmlElement(name = "uri")
     private URI uri;
+
+    @XmlElement(name = "username")
+    private String username;
+
+    @XmlElement(name = "password")
+    private String password;
 
     public String getName() {
         return name;
@@ -37,6 +43,22 @@ public class PhaseRequest {
 
     public void setUri(URI uri) {
         this.uri = uri;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -66,6 +88,8 @@ public class PhaseRequest {
         return new ToStringBuilder(this)
                 .append("name", name)
                 .append("uri", uri)
+                .append("username", username)
+                .append("password", "******")
                 .toString();
     }
 }
