@@ -26,6 +26,9 @@ public class PhasesResponse {
     @XmlAttribute(name = "description")
     private String description;
 
+    @XmlAttribute(name = "schemaLocation")
+    private String schemaLocation;
+
     @XmlElement(name = "phases")
     private List<PhaseResponse> phases = new ArrayList<PhaseResponse>();
 
@@ -71,6 +74,20 @@ public class PhasesResponse {
         this.description = description;
     }
 
+    /**
+     * @return link to the schema
+     */
+    public String getSchemaLocation() {
+        return schemaLocation;
+    }
+
+    /**
+     * @param schemaLocation link to the schema
+     */
+    public void setSchemaLocation(String schemaLocation) {
+        this.schemaLocation = schemaLocation;
+    }
+
     public List<PhaseResponse> getPhases() {
         return phases;
     }
@@ -107,6 +124,7 @@ public class PhasesResponse {
                 .append("href", href)
                 .append("method", method)
                 .append("description", description)
+                .append("schemaLocation", schemaLocation)
                 .append("phases", phases)
                 .toString();
     }

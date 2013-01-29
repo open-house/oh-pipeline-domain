@@ -38,6 +38,7 @@ public class PhasesResponseTest {
         String description = "test";
         String href = "http://localhost:3000";
         String method = "GET";
+        String schemaLocation = "http://localhost:3000/schema/phase";
 
         List<PhaseResponse> phases = new ArrayList<PhaseResponse>();
         phases.add(phaseResponse);
@@ -46,6 +47,7 @@ public class PhasesResponseTest {
         phasesResponse.setDescription(description);
         phasesResponse.setHref(href);
         phasesResponse.setMethod(method);
+        phasesResponse.setSchemaLocation(schemaLocation);
 
         String marshalled = TestUtil.marshall(PhasesResponse.class, phasesResponse);
         PhasesResponse unmarshalled = (PhasesResponse) TestUtil.unmarshall(PhasesResponse.class, marshalled);
@@ -55,5 +57,6 @@ public class PhasesResponseTest {
         Assert.assertEquals(unmarshalled.getDescription(), description);
         Assert.assertEquals(unmarshalled.getHref(), href);
         Assert.assertEquals(unmarshalled.getMethod(), method);
+        Assert.assertEquals(unmarshalled.getSchemaLocation(), schemaLocation);
     }
 }
