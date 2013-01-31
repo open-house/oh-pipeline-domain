@@ -31,6 +31,10 @@ public class PhaseResponse {
     @XmlElement(name = "links")
     private LinksResponse links;
 
+    private transient String username;
+
+    private transient byte[] password;
+
     public String getName() {
         return name;
     }
@@ -61,6 +65,22 @@ public class PhaseResponse {
         this.links = links;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public byte[] getPassword() {
+        return password;
+    }
+
+    public void setPassword(byte[] password) {
+        this.password = password;
+    }
+
     @Override
     public final int hashCode() {
 
@@ -89,6 +109,8 @@ public class PhaseResponse {
                 .append("name", name)
                 .append("uri", uri)
                 .append("links", links)
+                .append("username", username)
+                .append("password", "******")
                 .toString();
     }
 }
