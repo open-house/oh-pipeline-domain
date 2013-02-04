@@ -29,11 +29,17 @@ public class PhaseResponseTest {
     public void testMarshall() throws JAXBException, URISyntaxException {
 
         String name = "test_phase";
+        boolean auto = false;
         URI uri = new URI("http://localhost/uri");
+        String username = "test_user";
+        String password = "test_password";
 
         PhaseResponse phaseResponse = new PhaseResponse();
         phaseResponse.setName(name);
+        phaseResponse.setAuto(auto);
         phaseResponse.setUri(uri);
+        phaseResponse.setUsername(username);
+        phaseResponse.setPassword(password.getBytes());
 
         LinkResponse linkResponse = new LinkResponse();
         List<LinkResponse> links = new ArrayList<LinkResponse>();
@@ -46,7 +52,10 @@ public class PhaseResponseTest {
         PhaseResponse unmarshalled = (PhaseResponse) TestUtil.unmarshall(PhaseResponse.class, marshalled);
 
         Assert.assertEquals(unmarshalled.getName(), name);
+        Assert.assertEquals(unmarshalled.isAuto(), auto);
         Assert.assertEquals(unmarshalled.getUri(), uri);
         Assert.assertEquals(unmarshalled.getLinks().getLinks().size(), 1);
+        Assert.assertNull(unmarshalled.getUsername());
+        Assert.assertNull(unmarshalled.getPassword());
     }
 }

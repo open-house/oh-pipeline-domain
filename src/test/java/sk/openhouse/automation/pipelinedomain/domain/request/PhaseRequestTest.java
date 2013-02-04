@@ -27,12 +27,14 @@ public class PhaseRequestTest {
     public void testMarshall() throws JAXBException, URISyntaxException {
 
         String name = "test";
+        boolean auto = false;
         URI uri = new URI("http://localhost/test");
         String username = "test_user";
         String password = "test_pass";
 
         PhaseRequest phaseRequest = new PhaseRequest();
         phaseRequest.setName(name);
+        phaseRequest.setAuto(auto);
         phaseRequest.setUri(uri);
         phaseRequest.setUsername(username);
         phaseRequest.setPassword(password);
@@ -41,6 +43,7 @@ public class PhaseRequestTest {
         PhaseRequest unmarshalled = (PhaseRequest) TestUtil.unmarshall(PhaseRequest.class, marshalled);
 
         Assert.assertEquals(unmarshalled.getName(), name);
+        Assert.assertEquals(unmarshalled.isAuto(), auto);
         Assert.assertEquals(unmarshalled.getUri(), uri);
         Assert.assertEquals(unmarshalled.getUsername(), username);
         Assert.assertEquals(unmarshalled.getPassword(), password);
@@ -54,7 +57,9 @@ public class PhaseRequestTest {
         String marshalled = TestUtil.marshall(PhaseRequest.class, phaseRequest);
         PhaseRequest unmarshalled = (PhaseRequest) TestUtil.unmarshall(PhaseRequest.class, marshalled);
 
+        /* default values */
         Assert.assertNull(unmarshalled.getName());
+        Assert.assertEquals(unmarshalled.isAuto(), true);
         Assert.assertNull(unmarshalled.getUri());
         Assert.assertNull(unmarshalled.getUsername());
         Assert.assertNull(unmarshalled.getPassword());

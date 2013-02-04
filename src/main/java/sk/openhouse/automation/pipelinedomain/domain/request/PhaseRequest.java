@@ -14,11 +14,14 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "phase")
-@XmlType(propOrder = {"name", "uri", "username", "password"})
+@XmlType(propOrder = {"name", "auto", "uri", "username", "password"})
 public class PhaseRequest {
 
     @XmlElement(name = "name")
     private String name;
+
+    @XmlElement(name = "auto")
+    private boolean auto = true;
 
     @XmlElement(name = "uri")
     private URI uri;
@@ -35,6 +38,14 @@ public class PhaseRequest {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isAuto() {
+        return auto;
+    }
+
+    public void setAuto(boolean auto) {
+        this.auto = auto;
     }
 
     public URI getUri() {
@@ -87,6 +98,7 @@ public class PhaseRequest {
 
         return new ToStringBuilder(this)
                 .append("name", name)
+                .append("auto", auto)
                 .append("uri", uri)
                 .append("username", username)
                 .append("password", "******")
