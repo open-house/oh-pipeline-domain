@@ -29,7 +29,7 @@ public class PhaseResponseTest {
     public void testMarshall() throws JAXBException, URISyntaxException {
 
         String name = "test_phase";
-        boolean auto = false;
+        Boolean auto = false;
         URI uri = new URI("http://localhost/uri");
         String username = "test_user";
         String password = "test_password";

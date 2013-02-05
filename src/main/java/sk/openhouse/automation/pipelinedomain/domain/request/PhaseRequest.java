@@ -21,7 +21,7 @@ public class PhaseRequest {
     private String name;
 
     @XmlElement(name = "auto")
-    private boolean auto = true;
+    private Boolean auto;
 
     @XmlElement(name = "uri")
     private URI uri;
@@ -40,11 +40,11 @@ public class PhaseRequest {
         this.name = name;
     }
 
-    public boolean isAuto() {
+    public Boolean isAuto() {
         return auto;
     }
 
-    public void setAuto(boolean auto) {
+    public void setAuto(Boolean auto) {
         this.auto = auto;
     }
 
